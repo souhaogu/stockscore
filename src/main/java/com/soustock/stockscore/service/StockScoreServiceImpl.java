@@ -18,14 +18,13 @@ public class StockScoreServiceImpl implements StockScoreService {
     public StockScoreVo queryLongScore(String stockCode) throws Exception {
         //先返回一个demo
         StockScoreVo stockScoreVo = new StockScoreVo();
+        stockScoreVo.setTotalScore(80.0);
         DetailScoreVo stockDetailScore = new DetailScoreVo();
         stockDetailScore.setAccountScore(80.0);
         stockDetailScore.setDirectionScore(80.0);
         stockDetailScore.setSafetyScore(80.0);
         stockDetailScore.setVitality(80.0);
         stockDetailScore.setEventScore(80.0);
-
-
         stockScoreVo.setStockDetailScoreVo(stockDetailScore);
         stockScoreVo.setIndustryDetailScoreVo(stockDetailScore);
         Map<String, DetailScoreVo> detailScoreVoMap = new HashMap<>(1);
