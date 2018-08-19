@@ -2,6 +2,7 @@ package com.soustock.stockscore.vo.score;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,10 +26,14 @@ public class StockScoreVo implements Serializable {
      */
     private DetailScoreVo industryDetailScoreVo;
 
+    public Map<String, DetailScoreVo> getIdeaDetailScoreMap() {
+        return ideaDetailScoreMap;
+    }
+
     /**
      * 概念分
      */
-    private Map<String, DetailScoreVo> ideaDetailScoreMap;
+    private Map<String, DetailScoreVo> ideaDetailScoreMap = new HashMap<>();
 
     /**
      * 市场细节分
@@ -59,14 +64,6 @@ public class StockScoreVo implements Serializable {
 
     public void setIndustryDetailScoreVo(DetailScoreVo industryDetailScoreVo) {
         this.industryDetailScoreVo = industryDetailScoreVo;
-    }
-
-    public Map<String, DetailScoreVo> getIdeaDetailScoreMap() {
-        return ideaDetailScoreMap;
-    }
-
-    public void setIdeaDetailScoreMap(Map<String, DetailScoreVo> ideaDetailScoreMap) {
-        this.ideaDetailScoreMap = ideaDetailScoreMap;
     }
 
     public DetailScoreVo getMarketDetailScoreVo() {
