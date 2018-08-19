@@ -26,7 +26,7 @@ public class DetailScoreVo implements Serializable {
     /**
      * 活跃分
      */
-    private double vitality;
+    private double vitalityScore;
 
     /**
      * 事件分
@@ -65,11 +65,11 @@ public class DetailScoreVo implements Serializable {
         this.accountScore = accountScore;
     }
 
-    public double getVitality() {
-        return vitality;
+    public double getVitalityScore() {
+        return vitalityScore;
     }
 
-    public void setVitality(double vitality) {
-        this.vitality = vitality;
+    public void setVitalityScore(double vitalityScore) {
+        this.vitalityScore = vitalityScore;
     }
 }

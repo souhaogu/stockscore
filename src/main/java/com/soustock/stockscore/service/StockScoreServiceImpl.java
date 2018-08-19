@@ -23,7 +23,7 @@ public class StockScoreServiceImpl implements StockScoreService {
         stockDetailScore.setAccountScore(80.0);
         stockDetailScore.setDirectionScore(80.0);
         stockDetailScore.setSafetyScore(80.0);
-        stockDetailScore.setVitality(80.0);
+        stockDetailScore.setVitalityScore(80.0);
         stockDetailScore.setEventScore(80.0);
         stockScoreVo.setStockDetailScoreVo(stockDetailScore);
         stockScoreVo.setIndustryDetailScoreVo(stockDetailScore);
