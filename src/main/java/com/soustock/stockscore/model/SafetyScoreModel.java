@@ -2,6 +2,7 @@ package com.soustock.stockscore.model;
 
 
 import com.soustock.stockscore.utils.CsvFileReader;
+import com.soustock.stockscore.utils.RoundUtity;
 import com.soustock.stockscore.vo.DayQuoteVo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -55,7 +56,7 @@ public class SafetyScoreModel {
         } else if (score > 99.0){
             score = 99.0;
         }
-        return score;
+        return RoundUtity.RoundDouble(score, 2);
     }
 
     /**
