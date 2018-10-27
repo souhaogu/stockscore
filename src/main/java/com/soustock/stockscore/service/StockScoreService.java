@@ -9,6 +9,6 @@ import com.soustock.stockscore.vo.score.StockScoreVo;
 public interface StockScoreService {
 
 
-    StockScoreVo queryLongScore(String stockCode) throws Exception;
+    StockScoreVo queryScore(String stockCode) throws Exception;
 
 }

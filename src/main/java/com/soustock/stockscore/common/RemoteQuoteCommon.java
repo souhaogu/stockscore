@@ -1,10 +1,7 @@
 package com.soustock.stockscore.common;
 
 
-import com.alibaba.fastjson.JSON;
 import com.soustock.stockscore.utils.HttpRequester;
-import com.soustock.stockscore.utils.JsonUtity;
-import com.soustock.stockscore.utils.StringUtity;
 import com.soustock.stockscore.vo.DayQuoteVo;
 import com.soustock.stockscore.vo.MinuteQuoteVo;
 import com.soustock.stockscore.vo.StockSimpleVo;
@@ -25,18 +22,13 @@ public class RemoteQuoteCommon {
      * @return
      * @throws IOException
      */
-    public static StockSimpleVo getStockSimpleVoByStockCode(String stockCode) throws IOException {
+    public static StockSimpleVo getStockSimpleVoByStockCode(String stockCode) throws Exception {
         String urlString = BASE_URL_QUOTE + "/stockBasic/getStockBasicByStockCode.do";
         HttpRequester httpRequester = new HttpRequester();
         Map<String, String> params = new HashMap<>();
         params.put("stockCode", stockCode);
         String retStr = httpRequester.sendGet(urlString, params);
-        Map<String, Object> retMap = JSON.parseObject(retStr, Map.class);
-        if (retMap != null){
-            StockSimpleVo stockSimpleVo = (StockSimpleVo) JsonUtity.readValue(retMap.get("result").toString(), StockSimpleVo.class);
-            return stockSimpleVo;
-        }
-        return null;
+        return ReturnMapHandler.handleObject(retStr, "result", StockSimpleVo.class);
     }
 
 
@@ -45,7 +37,7 @@ public class RemoteQuoteCommon {
      * @return
      * @throws IOException
      */
-    public static List<DayQuoteVo> queryQuoteByDate(String stockCode, String bgnDate, String endDate, String fuquan) throws IOException {
+    public static List<DayQuoteVo> queryQuoteByDate(String stockCode, String bgnDate, String endDate, String fuquan) throws Exception {
         String urlString = BASE_URL_QUOTE + "/dayQuote/queryQuoteByDate.do";
         HttpRequester httpRequester = new HttpRequester();
         Map<String, String> params = new HashMap<>();
@@ -54,11 +46,7 @@ public class RemoteQuoteCommon {
         params.put("endDate", endDate);
         params.put("fuquan", fuquan);
         String retStr = httpRequester.sendGet(urlString, params);
-        if (!StringUtity.isNullOrEmpty(retStr)){
-            Map<String, Object> retMap = JSON.parseObject(retStr, Map.class);
-            return (List<DayQuoteVo>)JsonUtity.readValueToList(retMap.get("list").toString(), DayQuoteVo.class);
-        }
-        return null;
+        return ReturnMapHandler.handleList(retStr, "list", DayQuoteVo.class);
     }
 
     /**
@@ -66,18 +54,14 @@ public class RemoteQuoteCommon {
      * @return
      * @throws IOException
      */
-    public static List<MinuteQuoteVo> queryRealtimeQuotes(String stockCode, int recentlyCount) throws IOException {
-        String urlString = BASE_URL_QUOTE + "/realtimeQuote/queryQuoteData.do";
+    public static List<MinuteQuoteVo> queryRealtimeQuotes(String stockCode, int recentlyCount) throws Exception {
+        String urlString = BASE_URL_QUOTE + "/realtimeQuote/queryRealtimeQuotes.do";
         HttpRequester httpRequester = new HttpRequester();
         Map<String, String> params = new HashMap<>();
         params.put("stockCode", stockCode);
         params.put("recentlyCount", String.valueOf(recentlyCount));
         String retStr = httpRequester.sendGet(urlString, params);
-        if (!StringUtity.isNullOrEmpty(retStr)){
-            Map<String, Object> retMap = JSON.parseObject(retStr, Map.class);
-            return (List<MinuteQuoteVo>) JsonUtity.readValueToList(retMap.get("list").toString(), MinuteQuoteVo.class);
-        }
-        return null;
+        return ReturnMapHandler.handleList(retStr, "list", MinuteQuoteVo.class);
     }
 
 }

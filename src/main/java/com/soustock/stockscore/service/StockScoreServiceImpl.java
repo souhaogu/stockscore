@@ -15,13 +15,10 @@ public class StockScoreServiceImpl implements StockScoreService {
     @Autowired
     private SafetyScoreService safetyScoreService;
 
-
     @Override
-    public StockScoreVo queryLongScore(String stockCode) throws Exception {
-        double safetyScore = safetyScoreService.getScore(stockCode);
+    public StockScoreVo queryScore(String stockCode) throws Exception {
         StockScoreVo stockScoreVo = new StockScoreVo();
-        stockScoreVo.setTotalScore(safetyScore);    //综合评分
-        stockScoreVo.setSafetyScore(safetyScore);   //安全边际
+        stockScoreVo.setSafetyScore(safetyScoreService.getScore(stockCode));   //安全分
         return stockScoreVo;
     }
 
