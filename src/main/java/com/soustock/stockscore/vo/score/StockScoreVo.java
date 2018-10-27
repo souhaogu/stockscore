@@ -2,8 +2,6 @@ package com.soustock.stockscore.vo.score;
 
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by xuyufei on 2016/5/1.
@@ -17,29 +15,29 @@ public class StockScoreVo implements Serializable {
     private double totalScore;
 
     /**
-     * 个股细节分
+     * 安全分
      */
-    private DetailScoreVo stockDetailScoreVo;
+    private double safetyScore = -1.0;
 
     /**
-     * 行业细节分
+     * 财务分
      */
-    private DetailScoreVo industryDetailScoreVo;
-
-    public Map<String, DetailScoreVo> getIdeaDetailScoreMap() {
-        return ideaDetailScoreMap;
-    }
+    private double accountScore = -1.0;
 
     /**
-     * 概念分
+     * 趋势分
      */
-    private Map<String, DetailScoreVo> ideaDetailScoreMap = new HashMap<>();
+    private double directionScore = -1.0;
 
     /**
-     * 市场细节分
+     * 活跃分
      */
-    private DetailScoreVo marketDetailScoreVo;
+    private double vitalityScore = -1.0;
 
+    /**
+     * 事件分
+     */
+    private double eventScore = -1.0;
 
 
     public double getTotalScore() {
@@ -50,28 +48,45 @@ public class StockScoreVo implements Serializable {
         this.totalScore = totalScore;
     }
 
-    public DetailScoreVo getStockDetailScoreVo() {
-        return stockDetailScoreVo;
+
+    public double getSafetyScore() {
+        return safetyScore;
     }
 
-    public void setStockDetailScoreVo(DetailScoreVo stockDetailScoreVo) {
-        this.stockDetailScoreVo = stockDetailScoreVo;
+    public void setSafetyScore(double safetyScore) {
+        this.safetyScore = safetyScore;
     }
 
-    public DetailScoreVo getIndustryDetailScoreVo() {
-        return industryDetailScoreVo;
+    public double getAccountScore() {
+        return accountScore;
     }
 
-    public void setIndustryDetailScoreVo(DetailScoreVo industryDetailScoreVo) {
-        this.industryDetailScoreVo = industryDetailScoreVo;
+    public void setAccountScore(double accountScore) {
+        this.accountScore = accountScore;
     }
 
-    public DetailScoreVo getMarketDetailScoreVo() {
-        return marketDetailScoreVo;
+    public double getDirectionScore() {
+        return directionScore;
     }
 
-    public void setMarketDetailScoreVo(DetailScoreVo marketDetailScoreVo) {
-        this.marketDetailScoreVo = marketDetailScoreVo;
+    public void setDirectionScore(double directionScore) {
+        this.directionScore = directionScore;
+    }
+
+    public double getVitalityScore() {
+        return vitalityScore;
+    }
+
+    public void setVitalityScore(double vitalityScore) {
+        this.vitalityScore = vitalityScore;
+    }
+
+    public double getEventScore() {
+        return eventScore;
+    }
+
+    public void setEventScore(double eventScore) {
+        this.eventScore = eventScore;
     }
 
 }

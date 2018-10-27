@@ -26,6 +26,7 @@ public class StockScoreController {
     public Map<String, Object> queryLongScore(HttpServletRequest request) throws Exception {
         String stockCode = request.getParameter("stockCode");
         Map<String, Object> map = new HashMap<>();
+        map.put("isSucc", "true");
         map.put("result", stockScoreService.queryLongScore(stockCode));
         return map;
     }

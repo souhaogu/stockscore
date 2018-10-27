@@ -7,6 +7,6 @@
     </head>
     <body>
         <h1>welcome to souhaogu.cn/stock_score</h1>
-        <a href="${root}/stockScore/queryLongScore.do?stockCode=SH600000">获取浦发银行的长期分</a><br>
+        <a href="${root}/stockScore/queryLongScore.do?stockCode=SH600000">获取浦发银行的股票分</a><br>
     </body>
 </html>
