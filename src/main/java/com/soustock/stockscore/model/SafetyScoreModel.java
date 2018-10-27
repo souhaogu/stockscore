@@ -7,10 +7,7 @@ import com.soustock.stockscore.vo.DayQuoteVo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by xuyufei on 2018/10/27.
@@ -51,12 +48,19 @@ public class SafetyScoreModel {
 
     private static double calcScore(double x1_coeff, double x2_coeff, double intercept, double x1_woe, double x2_woe) {
         double score = (x1_woe * x1_coeff + x2_woe * x2_coeff + intercept) * factor + offset;
+        score = score - 3 + randDouble(6);
         if (score <1.00){
             score = 1.00;
         } else if (score > 99.0){
             score = 99.0;
         }
+        score = 60 + (score - 60) * 0.90;
         return RoundUtity.RoundDouble(score, 2);
+    }
+
+    private static double randDouble(int n){
+        Random rand = new Random();
+        return rand.nextDouble() * n;
     }
 
     /**
