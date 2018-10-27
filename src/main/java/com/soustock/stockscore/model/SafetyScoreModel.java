@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class SafetyScoreModel {
 
-    private final static Log logger = LogFactory.getLog(SafetyScoreModel.class);
+//    private final static Log logger = LogFactory.getLog(SafetyScoreModel.class);
 
     private static TreeMap<Double, NumericBin> x1_binMap;
     private static TreeMap<Double, NumericBin> x2_binMap;
@@ -24,7 +24,7 @@ public class SafetyScoreModel {
             x1_binMap = readBinsFromCsv("/root/stock_score/x1_woe.csv");
             x2_binMap = readBinsFromCsv("/root/stock_score/x2_woe.csv");
         } catch (Exception ex){
-            logger.error(ex);
+//            logger.error(ex);
         }
     }
 

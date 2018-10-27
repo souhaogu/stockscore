@@ -31,7 +31,7 @@ public class SafetyScoreServiceImpl implements SafetyScoreService {
         StockSimpleVo stockSimpleVo = stockBasicService.getStockBasicByStockCode(stockCode);
         String dateOfSevenYearsBefore = DateUtity.getSameDateOfPreYear(7);
         if (stockSimpleVo.getListDate().compareTo(dateOfSevenYearsBefore) > 0){
-            throw new Exception(String.format("股票：%s的上市时间太短，无法打分。"));
+            throw new Exception(String.format("股票：%s[%s]打分失败，暂时不支持给上市时间短的股票打分。", stockCode, stockSimpleVo.getStockName()));
         }
 
         String dateOfOneYearsBefore = DateUtity.getSameDateOfPreYear(1);
