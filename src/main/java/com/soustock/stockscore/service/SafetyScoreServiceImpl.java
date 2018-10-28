@@ -42,10 +42,20 @@ public class SafetyScoreServiceImpl implements SafetyScoreService, Fetchable {
         String[] dataKeys = new String[]{stockCode};
         List<Double> closePriceList = (List<Double>) cacheAdapterOfQuoteHis.fetchDataFromCacheOrNot(dataKeys);
 
+        double dRealtimePrice = getRealtimePrice(stockCode);
+        SafetyScoreModel safetyScoreModel = new SafetyScoreModel();
+        return safetyScoreModel.getScore(dRealtimePrice, closePriceList);
+    }
+
+    private double getRealtimePrice(String stockCode) throws Exception {
         //获取即时行情(后复权）
         MinuteQuoteVo minuteQuoteVo = realtimeQuoteService.queryRealtimeQuote(stockCode, FuquanKind.Behind);
-        SafetyScoreModel safetyScoreModel = new SafetyScoreModel();
-        return safetyScoreModel.getScore(minuteQuoteVo.getAvgPrice(), closePriceList);
+        if (minuteQuoteVo != null){
+            return minuteQuoteVo.getAvgPrice();
+        } else {
+            List<DayQuoteVo> dayQuoteVoList = dayQuoteService.queryQuoteData(stockCode, 1, FuquanKind.Behind);
+            return dayQuoteVoList.get(0).getClosePrice();
+        }
     }
 
     @Override
@@ -56,7 +66,6 @@ public class SafetyScoreServiceImpl implements SafetyScoreService, Fetchable {
 
     /**
      * 得到过去n年的收盘价序列
-     *
      * @param stockCode
      * @return
      * @throws Exception

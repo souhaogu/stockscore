@@ -17,4 +17,9 @@ public class DayQuoteServiceImpl implements DayQuoteService {
         return RemoteQuoteCommon.queryQuoteByDate(stockCode, bgnDate, endDate, fuquanKind);
     }
 
+    @Override
+    public List<DayQuoteVo> queryQuoteData(String stockCode, int recentlyCount, FuquanKind fuquanKind) throws Exception {
+        return RemoteQuoteCommon.queryQuoteData(stockCode, recentlyCount, fuquanKind);
+    }
+
 }

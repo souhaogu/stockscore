@@ -49,6 +49,17 @@ public class RemoteQuoteCommon {
         return ReturnMapHandler.handleList(retStr, "list", DayQuoteVo.class);
     }
 
+    public static List<DayQuoteVo> queryQuoteData(String stockCode, int recentlyCount, FuquanKind fuquanKind) throws Exception {
+        String urlString = BASE_URL_QUOTE + "/dayQuote/queryQuoteData.do";
+        HttpRequester httpRequester = new HttpRequester();
+        Map<String, String> params = new HashMap<>();
+        params.put("stockCode", stockCode);
+        params.put("recentlyCount", String.valueOf(recentlyCount));
+        params.put("fuquan", fuquanKind.getCode());
+        String retStr = httpRequester.sendGet(urlString, params);
+        return ReturnMapHandler.handleList(retStr, "list", DayQuoteVo.class);
+    }
+
     /**
      * 得到某个股票的最新收盘价
      * @return
