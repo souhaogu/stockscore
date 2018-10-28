@@ -48,7 +48,7 @@ public class SafetyScoreModel {
 
     private static double calcScore(double x1_coeff, double x2_coeff, double intercept, double x1_woe, double x2_woe) {
         double score = (x1_woe * x1_coeff + x2_woe * x2_coeff + intercept) * factor + offset;
-        score = score - 3 + randDouble(6);
+//        score = score - 3 + randDouble(6);
         if (score <1.00){
             score = 1.00;
         } else if (score > 99.0){

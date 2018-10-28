@@ -37,14 +37,14 @@ public class RemoteQuoteCommon {
      * @return
      * @throws IOException
      */
-    public static List<DayQuoteVo> queryQuoteByDate(String stockCode, String bgnDate, String endDate, String fuquan) throws Exception {
+    public static List<DayQuoteVo> queryQuoteByDate(String stockCode, String bgnDate, String endDate, FuquanKind fuquanKind) throws Exception {
         String urlString = BASE_URL_QUOTE + "/dayQuote/queryQuoteByDate.do";
         HttpRequester httpRequester = new HttpRequester();
         Map<String, String> params = new HashMap<>();
         params.put("stockCode", stockCode);
         params.put("bgnDate", bgnDate);
         params.put("endDate", endDate);
-        params.put("fuquan", fuquan);
+        params.put("fuquan", fuquanKind.getCode());
         String retStr = httpRequester.sendGet(urlString, params);
         return ReturnMapHandler.handleList(retStr, "list", DayQuoteVo.class);
     }
@@ -54,12 +54,13 @@ public class RemoteQuoteCommon {
      * @return
      * @throws IOException
      */
-    public static List<MinuteQuoteVo> queryRealtimeQuotes(String stockCode, int recentlyCount) throws Exception {
+    public static List<MinuteQuoteVo> queryRealtimeQuotes(String stockCode, int recentlyCount, FuquanKind fuquanKind) throws Exception {
         String urlString = BASE_URL_QUOTE + "/realtimeQuote/queryRealtimeQuotes.do";
         HttpRequester httpRequester = new HttpRequester();
         Map<String, String> params = new HashMap<>();
         params.put("stockCode", stockCode);
         params.put("recentlyCount", String.valueOf(recentlyCount));
+        params.put("fuquan", fuquanKind.getCode());
         String retStr = httpRequester.sendGet(urlString, params);
         return ReturnMapHandler.handleList(retStr, "list", MinuteQuoteVo.class);
     }

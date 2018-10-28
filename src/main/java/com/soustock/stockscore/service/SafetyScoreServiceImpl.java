@@ -34,9 +34,11 @@ public class SafetyScoreServiceImpl implements SafetyScoreService {
             throw new Exception(String.format("股票：%s[%s]打分失败，暂时不支持给上市时间短的股票打分。", stockCode, stockSimpleVo.getStockName()));
         }
 
+        //获取历史行情（后复权）
         String dateOfOneYearsBefore = DateUtity.getSameDateOfPreYear(1);
-        List<DayQuoteVo> dayQuoteServiceList = dayQuoteService.queryQuoteByDate(stockCode, dateOfSevenYearsBefore, dateOfOneYearsBefore, FuquanKind.Front.getCode());
-        MinuteQuoteVo minuteQuoteVo = realtimeQuoteService.queryRealtimeQuote(stockCode);
+        List<DayQuoteVo> dayQuoteServiceList = dayQuoteService.queryQuoteByDate(stockCode, dateOfSevenYearsBefore, dateOfOneYearsBefore, FuquanKind.Behind);
+        //获取即时行情(后复权）
+        MinuteQuoteVo minuteQuoteVo = realtimeQuoteService.queryRealtimeQuote(stockCode, FuquanKind.Behind);
         SafetyScoreModel safetyScoreModel = new SafetyScoreModel();
         return safetyScoreModel.getScore(minuteQuoteVo.getAvgPrice(), dayQuoteServiceList);
     }
