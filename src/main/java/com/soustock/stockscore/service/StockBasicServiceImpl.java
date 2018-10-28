@@ -3,7 +3,6 @@ package com.soustock.stockscore.service;
 
 import com.soustock.stockscore.common.RemoteQuoteCommon;
 import com.soustock.stockscore.vo.StockSimpleVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

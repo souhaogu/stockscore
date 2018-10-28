@@ -13,7 +13,8 @@ import java.util.List;
 @Service("dayQuoteService")
 public class DayQuoteServiceImpl implements DayQuoteService {
 
-    public List<DayQuoteVo> queryQuoteByDate(String stockCode, String bgnDate, String endDate, FuquanKind fuquanKind) throws Exception{
+    public List<DayQuoteVo> queryQuoteByDate(String stockCode, String bgnDate, String endDate, FuquanKind fuquanKind) throws Exception {
         return RemoteQuoteCommon.queryQuoteByDate(stockCode, bgnDate, endDate, fuquanKind);
     }
+
 }

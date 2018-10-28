@@ -37,8 +37,8 @@ public class SafetyScoreModel {
     private final static double factor = p / Math.log(2.0);
     private final static double offset = b - p * Math.log(o) / Math.log(2.0);
 
-    public double getScore(double curPrice, List<DayQuoteVo> dayQuoteVoList) {
-        Map<String, Double> variablesMap = extractVariables(curPrice, dayQuoteVoList);
+    public double getScore(double curPrice, List<Double> closePriceList) {
+        Map<String, Double> variablesMap = extractVariables(curPrice, closePriceList);
         double x1 = variablesMap.get("pricePosPer");
         double x2 = variablesMap.get("priceTimePer");
         double woe_x1 = x1_binMap.floorEntry(x1).getValue().getWoe();
@@ -93,16 +93,16 @@ public class SafetyScoreModel {
     /**
      * 抽取变量值列表
      * @param curPrice
-     * @param dayQuoteVoList
+     * @param closePriceList
      * @return
      */
-    private static Map<String, Double> extractVariables(double curPrice, List<DayQuoteVo> dayQuoteVoList){
+    private static Map<String, Double> extractVariables(double curPrice, List<Double> closePriceList){
         double maxPrice = 0;
         double minPrice = 999999.0;
-        int totalDayCount = dayQuoteVoList.size();
+        int totalDayCount = closePriceList.size();
         int lowerDayCount = 0;
-        for (DayQuoteVo dayQuoteVo: dayQuoteVoList){
-            double dTemp = dayQuoteVo.getClosePrice();
+        for (Double closePrice: closePriceList){
+            double dTemp = closePrice.doubleValue();
             if (dTemp > maxPrice){
                 maxPrice = dTemp;
             }
