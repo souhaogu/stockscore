@@ -15,7 +15,8 @@ import java.util.Map;
  */
 public class RemoteQuoteCommon {
 
-    private final static String BASE_URL_QUOTE = "https://quote.souhaogu.cn/stock_quote";
+    //private final static String BASE_URL_QUOTE = "https://127.0.0.1/stock_quote";
+    private final static String BASE_URL_QUOTE = "https://souhaogu.cn/stock_quote";
 
     /**
      * 获取某个股票的基本信息

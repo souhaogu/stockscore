@@ -6,10 +6,10 @@ package com.soustock.stockscore.common;
 public class Constants {
 
     //缓存日期key
-    public final static String DATA_KEY_CACHE_DATE = "quote_history_cache_date";
+    public final static String DATA_KEY_CACHE_DATE = "cache_date";
 
     //缓存数据key
-    public final static String DATA_KEY_CACHE_DATA = "quote_history_quote_data";
+    public final static String DATA_KEY_DATA_CONTENT = "data_content";
 
 
     //历史行情的缓存cache的key

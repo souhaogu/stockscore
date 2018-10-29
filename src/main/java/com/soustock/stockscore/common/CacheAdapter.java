@@ -4,10 +4,8 @@ package com.soustock.stockscore.common;
 import com.soustock.stockscore.utils.DateUtity;
 import com.soustock.stockscore.utils.StringUtity;
 import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 
 import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by xuyufei on 2018/10/28.
@@ -39,7 +37,7 @@ public class CacheAdapter {
     public Object fetchDataFromCacheOrNot(String[] dataKeys) throws Exception {
         String dataKeyArrStr = String.join("_", dataKeys);
         String cacheDateKey = dataKeyArrStr + "_" + Constants.DATA_KEY_CACHE_DATE;
-        String cacheDataKey = dataKeyArrStr + "_" + Constants.DATA_KEY_CACHE_DATA;
+        String cacheDataKey = dataKeyArrStr + "_" + Constants.DATA_KEY_DATA_CONTENT;
         String cacheDate = (String) getValueFromCache(cache, cacheDateKey);
         String todayStr = DateUtity.dateToDateStr(new Date());
         if ((StringUtity.isNullOrEmpty(cacheDate) || cacheDate.compareTo(todayStr) != 0)) {
