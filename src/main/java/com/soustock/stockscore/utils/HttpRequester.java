@@ -15,10 +15,8 @@ import java.util.Map;
  * @author xuyufei
  */
 public class HttpRequester {
-    private String defaultContentEncoding;
 
     public HttpRequester() {
-        this.defaultContentEncoding = Charset.defaultCharset().name();
     }
 
     /**
@@ -170,11 +168,8 @@ public class HttpRequester {
     private String makeContent(String urlString,
                                     HttpURLConnection urlConnection) throws IOException {
         try {
-            String encoding = urlConnection.getContentEncoding();
-            if (encoding == null)
-                encoding = this.defaultContentEncoding;
+            String encoding = "UTF-8";
             InputStream in = urlConnection.getInputStream();
-
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             int bytesCount ;
             byte[] bytes = new byte[1024];
@@ -190,19 +185,6 @@ public class HttpRequester {
         }
     }
 
-    /**
-     * 默认的响应字符集
-     */
-    public String getDefaultContentEncoding() {
-        return this.defaultContentEncoding;
-    }
-
-    /**
-     * 设置默认的响应字符集
-     */
-    public void setDefaultContentEncoding(String defaultContentEncoding) {
-        this.defaultContentEncoding = defaultContentEncoding;
-    }
 
     public static void main(String[] args) throws IOException {
         String url = String.format("http://vip.stock.finance.sina.com.cn/quotes_service/view/vML_DataList.php?asc=j&symbol=%s&num=%d", "sh600000", 34);
